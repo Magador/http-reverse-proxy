@@ -1,10 +1,9 @@
 {
   "name": "http-reverse-proxy",
-  "version": "1.0.0",
-  "description": "A simple HTTP reverse proxy redirecting to each correct local servers function to the host of HTTP requests.",
+  "version": "1.1.0",
+  "description": "A simple HTTPS reverse proxy redirecting to each correct local servers function to the host of HTTPS requests.",
   "main": "proxy.js",
   "dependencies": {
-    "http-proxy": "^1.9.0"
   },
   "devDependencies": {},
   "scripts": {

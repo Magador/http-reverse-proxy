@@ -1,3 +1,20 @@
 {
-  "domain.name": "http://localhost:9001"
+  "hosts": [
+    {
+      "host": "un.localhost",
+      "target": "https://localhost:8001",
+      "ssl": {
+        "key": "C:/Documents/Projects/first-https-server/certs/key.pem",
+        "cert": "C:/Documents/Projects/first-https-server/certs/cert.pem"
+      }
+    },
+    {
+      "host": "deux.localhost",
+      "target": "https://localhost:8002",
+      "ssl": {
+        "key": "C:/Documents/Projects/second-https-server/certs/key.pem",
+        "cert": "C:/Documents/Projects/second-https-server/certs/cert.pem"
+      }
+    }
+  ]
 }

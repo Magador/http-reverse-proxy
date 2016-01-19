@@ -3,17 +3,21 @@
  */
 "use strict";
 
-var proxy = require('http-proxy').createServer({}),
-    forward = JSON.parse(require('fs').readFileSync('forward.json', {encoding: 'utf8'})),
-    http = require('http'),
-    port = 80;
+var forward = JSON.parse(require('fs').readFileSync('forward.json', {encoding: 'utf8'}));
 
-http.createServer(function(req, res) {
-    proxy.web(req, res, {target: forward[require('url').parse('http://'+req.headers.host).hostname]});
-}).listen(port, function(err) {
-    if(err) {
-        return console.error(err);
-    }
-    console.info("Proxy started listening on port "+ port +" for : "+ Object.keys(forward).toString());
-
+var redbird = require('redbird')({
+  port: 80,
+  secure: false,
+  ssl: {
+    port: 443,
+    key: "certs/dev-key.pem",
+    cert: "certs/dev-cert.pem"
+  }
 });
+
+for(let link of forward.hosts) {
+  let opts = {
+    ssl: link.ssl
+  };
+  redbird.register(link.host, link.target, opts);
+}
